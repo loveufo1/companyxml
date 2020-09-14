@@ -303,7 +303,7 @@ namespace companyxml
                 app.Cells[11, 5] = textBox11.Text;
                 app.Cells[11, 1] = "A";
 
-                app.Cells[4, 5] = "ARTCLE:STEEL PIN";
+                app.Cells[4, 5] = "ARTICLE:STEEL PIN";
                 app.Cells[5, 5] = "ITEM NO. ";
                 app.Cells[5, 6] = textBox1.Text;
                 app.Cells[6, 5] = "SIZE ";

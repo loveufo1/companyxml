@@ -245,6 +245,7 @@
             this.textBox1.Size = new System.Drawing.Size(279, 64);
             this.textBox1.TabIndex = 45;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.MouseLeave += new System.EventHandler(this.textBox1_MouseLeave);
             // 
             // comboBox1
             // 

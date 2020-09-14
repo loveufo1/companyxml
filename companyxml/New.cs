@@ -51,10 +51,18 @@ namespace companyxml
             {
                 textBox10.Text = "0";
             }
-
-
-            XElement xe = XElement.Load("tsell.xml");
-            xe.Add(new XElement(
+  XElement xe = XElement.Load("tsell.xml");
+            var check = (from n in xe.Elements()
+                         where n.Element("OrderNo").Value == textBox6.Text
+                         select n).FirstOrDefault();
+         
+            if(check != null)
+            {
+                MessageBox.Show("訂單代號重複!");
+            }
+            else
+            {
+                xe.Add(new XElement(
                 "sell"
                  , new XElement("Id", 2)
                  , new XElement("Quantity", textBox3.Text)
@@ -63,24 +71,14 @@ namespace companyxml
                  , new XElement("NW", textBox4.Text)
                  , new XElement("GW", textBox5.Text)
                  , new XElement("Harber", har)
-                 , new XElement("HarberCode",comboBox1.Text)                
+                 , new XElement("HarberCode", comboBox1.Text)
                  , new XElement("OrderNo", textBox6.Text)
                  , new XElement("Po", textBox8.Text)
                  , new XElement("CDate", textBox9.Text)
-                 , new XElement("Date", textBox7.Text)                                                                                                                   
+                 , new XElement("Date", textBox7.Text)
                  , new XElement("Out", "未出貨")
                  , new XElement("Al", textBox10.Text)
                 ));
-
-            var check = (from n in xe.Elements()
-                        where n.Element("OrderNo").Value == textBox6.Text
-                        select n).FirstOrDefault();
-            if(check != null)
-            {
-                MessageBox.Show("訂單代號重複!");
-            }
-            else
-            {
                 xe.Save("tsell.xml");           
                 MessageBox.Show("新增成功");
                 string Filestr = $@"C:\hw4\{textBox8.Text}";
@@ -202,7 +200,56 @@ namespace companyxml
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            
+        }
 
+        private void textBox1_MouseLeave(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Contains("19"))
+            {
+                textBox2.Text = "3.8*45";
+            }
+            else if (textBox1.Text.Contains("13A"))
+            {
+                textBox2.Text = "3.8*30";
+            }
+            else if (textBox1.Text.Contains("13B"))
+            {
+                textBox2.Text = "3.85*39";
+            }
+            else if (textBox1.Text.Contains("13"))
+            {
+                textBox2.Text = "3.85*45";
+            }
+            else if (textBox1.Text.Contains("05"))
+            {
+                textBox2.Text = "4.3*45";
+            }
+            else if (textBox1.Text.Contains("04"))
+            {
+                textBox2.Text = "4.35*39";
+            }
+            
+            else if (textBox1.Text.Contains("14"))
+            {
+                textBox2.Text = "4.4*39";
+            }
+            else if (textBox1.Text.Contains("01"))
+            {
+                textBox2.Text = "4.4*45";
+            }
+            else if (textBox1.Text.Contains("15"))
+            {
+                textBox2.Text = "4.5*39";
+            }
+            else if (textBox1.Text.Contains("07"))
+            {
+                textBox2.Text = "4.5*45";
+            }
+            else if (textBox1.Text.Contains("0"))
+            {
+                textBox2.Text = "4.35*45";
+            }
         }
     }
 }
