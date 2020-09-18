@@ -43,7 +43,25 @@ namespace companyxml
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-
+            XElement xe = XElement.Load("tsell.xml");
+            var n = from m in xe.Elements()
+                    where m.Element("Date").Value.Contains(yearC.Text)
+                    select new
+                    {
+                        規格 = m.Element("Size").Value,
+                        重量 = Convert.ToDecimal(m.Element("NW").Value),
+                        數量 = Convert.ToInt32(m.Element("Quantity").Value)
+                    };
+            var n1 = n.GroupBy(m => m.規格 ).Select(m => new
+            {
+                規格 = m.Key,
+                重量 = m.Sum(y1 => y1.重量),
+                數量 = m.Sum(y1 => y1.數量)
+            });
+           
+                     
+                     
+            dataGridView1.DataSource = n1.ToList();
         }
 
         private void monthC_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,13 +72,15 @@ namespace companyxml
                     where m.Element("Date").Value.Contains(date)
                     select new
                     {
-                        規格=m.Element("Size").Value,
-                        數量=Convert.ToInt32(m.Element("Quantity").Value)
+                        規格 = m.Element("Size").Value,
+                        重量 = Convert.ToDecimal(m.Element("NW").Value),
+                        數量 = Convert.ToInt32(m.Element("Quantity").Value)
                     };
-            var n1 = n.GroupBy(m => m.規格, m => m.數量, (Size, quantity) => new
+            var n1 = n.GroupBy(m =>  m.規格 ).Select(m => new
             {
-                規格 = Size,
-                數量 = quantity.Sum()
+                規格 = m.Key,
+                重量 = m.Sum(y1 => y1.重量),
+                數量 = m.Sum(y1 => y1.數量)
             });
             dataGridView1.DataSource = n1.ToList();
         }
@@ -75,14 +95,21 @@ namespace companyxml
                     select new
                     {
                         規格 = m.Element("Size").Value,
+                        重量 = Convert.ToDecimal(m.Element("NW").Value),
                         數量 = Convert.ToInt32(m.Element("Quantity").Value)
                     };
-            var n1 = n.GroupBy(m => m.規格, m => m.數量, (Size, quantity) => new
+            var n1 = n.GroupBy(m => m.規格 ).Select(m => new
             {
-                規格 = Size,
-                數量 = quantity.Sum()
+                規格 = m.Key,
+                重量 = m.Sum(y1 => y1.重量),
+                數量 = m.Sum(y1 => y1.數量)
             });
             dataGridView1.DataSource = n1.ToList();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -205,48 +205,48 @@ namespace companyxml
 
         private void textBox1_MouseLeave(object sender, EventArgs e)
         {
-            if (textBox1.Text.Contains("19"))
+            if (textBox1.Text.Contains("-19"))
             {
                 textBox2.Text = "3.8*45";
             }
-            else if (textBox1.Text.Contains("13A"))
+            else if (textBox1.Text.Contains("-13A"))
             {
-                textBox2.Text = "3.8*30";
+                textBox2.Text = "3.9*30";
             }
-            else if (textBox1.Text.Contains("13B"))
+            else if (textBox1.Text.Contains("-13B"))
             {
                 textBox2.Text = "3.85*39";
             }
-            else if (textBox1.Text.Contains("13"))
+            else if (textBox1.Text.Contains("-13"))
             {
                 textBox2.Text = "3.85*45";
             }
-            else if (textBox1.Text.Contains("05"))
+            else if (textBox1.Text.Contains("-05"))
             {
                 textBox2.Text = "4.3*45";
             }
-            else if (textBox1.Text.Contains("04"))
+            else if (textBox1.Text.Contains("-04"))
             {
                 textBox2.Text = "4.35*39";
             }
             
-            else if (textBox1.Text.Contains("14"))
+            else if (textBox1.Text.Contains("-14"))
             {
                 textBox2.Text = "4.4*39";
             }
-            else if (textBox1.Text.Contains("01"))
+            else if (textBox1.Text.Contains("-01"))
             {
                 textBox2.Text = "4.4*45";
             }
-            else if (textBox1.Text.Contains("15"))
+            else if (textBox1.Text.Contains("-15"))
             {
                 textBox2.Text = "4.5*39";
             }
-            else if (textBox1.Text.Contains("07"))
+            else if (textBox1.Text.Contains("-07"))
             {
                 textBox2.Text = "4.5*45";
             }
-            else if (textBox1.Text.Contains("0"))
+            else if (textBox1.Text=="1601-005-0")
             {
                 textBox2.Text = "4.35*45";
             }

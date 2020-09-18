@@ -72,7 +72,7 @@ namespace companyxml
 
             comboBox2.SelectedItem = DateTime.Now.Month.ToString();
 
-            comboBox3.SelectedItem = "成立日期";
+            comboBox3.SelectedItem = "訂單日期";
             label3.Text = "第" + page.ToString() + "頁";
         }
 
@@ -80,10 +80,10 @@ namespace companyxml
         {
 
         }
-
+//重新整理
         private void button2_Click(object sender, EventArgs e)
         {
-            //重新整理
+            
             XElement xe = XElement.Load("tsell.xml");
 
             var dat = from n in xe.Elements()
@@ -171,8 +171,8 @@ namespace companyxml
                 textBox8.Text = n.Element("Po").Value;
                 textBox7.Text = n.Element("Date").Value;
                 textBox9.Text = n.Element("CDate").Value;
-                textBox2.Text = n.Element("Quantity").Value;
-                textBox3.Text = n.Element("Size").Value;
+                textBox3.Text = n.Element("Quantity").Value;
+                textBox2.Text = n.Element("Size").Value;
                 textBox4.Text = n.Element("NW").Value;
                 textBox5.Text = n.Element("GW").Value;
                 textBox6.Text = n.Element("Out").Value;
@@ -529,7 +529,22 @@ namespace companyxml
             Excel.Application app = new Excel.Application();
             string Filestr = $@"C:\hw4\{textBox8.Text}";
             app.Visible = true;
-            app.Workbooks.Open(Filestr);
+
+            Excel.Workbook workbook = app.Workbooks.Open(Filestr);
+            Excel.Worksheet worksheet = (Excel.Worksheet)workbook.ActiveSheet;
+
+            //app.Workbooks.Open(Filestr);
+            
+            
+            Excel.PageSetup pageSetup = worksheet.PageSetup;
+            
+            pageSetup.Orientation = Excel.XlPageOrientation.xlLandscape;
+            
+            workbook.Save();
+            worksheet.PrintOutEx();
+            workbook.Close();
+            app.Quit();
+
         }
 
         private void button3_Click(object sender, EventArgs e)
