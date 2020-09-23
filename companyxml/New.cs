@@ -251,5 +251,27 @@ namespace companyxml
                 textBox2.Text = "4.35*45";
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Excel.Application app = new Excel.Application();
+            string Filestr = $@"C:\hw4\{textBox8.Text}";
+            app.Visible = true;
+
+            Excel.Workbook workbook = app.Workbooks.Open(Filestr);
+            Excel.Worksheet worksheet = (Excel.Worksheet)workbook.ActiveSheet;
+
+            //app.Workbooks.Open(Filestr);
+
+
+            Excel.PageSetup pageSetup = worksheet.PageSetup;
+
+            pageSetup.Orientation = Excel.XlPageOrientation.xlLandscape;
+
+            workbook.Save();
+            worksheet.PrintOutEx();
+            workbook.Close();
+            app.Quit();
+        }
     }
 }
